@@ -7,24 +7,20 @@ dist/
 build/
 *.local
 
-# Environment variables
+# Environment variables (protects your VAPID keys)
 .env
 .env.local
 .env.*.local
 
-# Logs
+# Logs and caches
 *.log
 npm-debug.log*
-
-# Vite caches
 .vite/
 .eslintcache
 .cache
 
-# OS files
+# OS and editor files
 .DS_Store
 Thumbs.db
-
-# IDE
 .vscode/
 .idea/
