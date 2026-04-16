@@ -48,8 +48,8 @@ app.use(express.json());
 
 webpush.setVapidDetails(
   'mailto:oramuluemmanuel294@gmail.com', // Replace with your email
-  process.env.PUBLIC_VAPID_KEY,
-  process.env.PRIVATE_VAPID_KEY
+  process.env.VAPID_PUBLIC_KEY,
+  process.env.VAPID_PRIVATE_KEY
 );
 
 // In a real app, you would save this to a Database (MongoDB/PostgreSQL)
@@ -66,34 +66,36 @@ app.post('/subscribe', (req, res) => {
 // Endpoint to trigger a notification (test)
 // server/server.js
 
-app.post('/send-notification', (req, res) => {
+app.post('/send-notification', async (req, res) => {
   const payload = JSON.stringify({
     title: 'Library Alert 📖',
     body: 'Time to log your reading progress!',
     url: '/books'
   });
 
-  // Map each subscription to a promise
-  const notifications = subscriptions.map((sub, index) => {
-    return webpush.sendNotification(sub, payload).catch((err) => {
-      // If the error is 404 (Not Found), 410 (Gone), or 500 (Permanent Error)
-      if (err.statusCode === 404 || err.statusCode === 410 || err.statusCode === 500) {
-        console.log(`Removing invalid subscription at index ${index}`);
-        subscriptions[index] = null; // Mark for deletion
-      } else {
-        console.error('Unexpected Push Error:', err.message);
+  console.log(`Attempting to send to ${subscriptions.length} subscribers...`);
+
+  const notifications = subscriptions.map(async (sub, index) => {
+    try {
+      await webpush.sendNotification(sub, payload);
+    } catch (err) {
+      // THIS IS THE CRITICAL LOG:
+      console.error(`--- Error for sub ${index} ---`);
+      console.error(`Status Code: ${err.statusCode}`);
+      console.error(`Body: ${err.body}`); // Look for "Unauthorized", "InvalidRegistration", etc.
+      
+      if (err.statusCode === 404 || err.statusCode === 410) {
+        console.log(`Sub ${index} is expired/gone. Marking for removal.`);
+        subscriptions[index] = null;
       }
-    });
+    }
   });
 
-  Promise.all(notifications).then(() => {
-    // Clean up the array by removing nulls
-    subscriptions = subscriptions.filter(sub => sub !== null);
-    res.status(200).json({
-      message: 'Sync complete.'
-    });
-  });
-  console.log('Notifications have been sent successfully ✅!')
+  await Promise.all(notifications);
+  subscriptions = subscriptions.filter(sub => sub !== null);
+  
+  res.status(200).json({ message: 'Push sequence completed.' });
+  console.log('Actual push operations finished ✅');
 });
 
 

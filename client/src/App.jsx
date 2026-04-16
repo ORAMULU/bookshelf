@@ -5,6 +5,9 @@ import {
 import {
   BrowserRouter
 } from 'react-router';
+import {
+  soundManager
+} from "./utils/soundManager";
 import InstallPrompt from './components/InstallPrompt';
 import ScrollToTop from './components/ScrollToTop';
 import AppRoutes from './AppRoutes';
@@ -93,6 +96,12 @@ function App() {
       ...newBook, id: maxId + 1
     }]);
   }
+
+
+  useEffect(() => {
+    soundManager.load("click", "/sound.mp3");
+    // soundManager.load("hover", "/hover.m4a"); // optional
+  }, []);
 
   function updateBook(updatedBook) {
     setBooks(books.map(b => b.id === updatedBook.id ? updatedBook: b));

@@ -3,15 +3,23 @@ import {
   useLocation
 } from 'react-router';
 import styles from './Navbar.module.css';
+import {
+  soundManager
+} from "../utils/soundManager";
+
 
 function Navbar() {
   const location = useLocation();
 
   const isActive = (path) => location.pathname === path;
 
+  const handleClick = () => {
+    soundManager.play("click");
+  };
+
   return (
     <nav className={styles.nav}>
-      <Link to="/" className={`${styles.navItem} ${isActive('/') ? styles.active: ''}`} style={ { textDecoration: 'none' }}>
+      <Link to="/" className={`${styles.navItem} ${isActive('/') ? styles.active: ''}`} style={ { textDecoration: 'none' }} onClick={handleClick}>
         <div className={styles.navIcon}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
@@ -24,7 +32,7 @@ function Navbar() {
         </div>
       </Link>
 
-      <Link to="/books" className={`${styles.navItem} ${isActive('/books') ? styles.active: ''}`} style={ { textDecoration: 'none' }}>
+      <Link to="/books" className={`${styles.navItem} ${isActive('/books') ? styles.active: ''}`} style={ { textDecoration: 'none' }} onClick={handleClick}>
         <div className={styles.navIcon}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
@@ -37,7 +45,7 @@ function Navbar() {
         </div>
       </Link>
 
-      <Link to="/add" className={`${styles.navItem} ${isActive('/add') ? styles.active: ''}`} style={ { textDecoration: 'none' }}>
+      <Link to="/add" className={`${styles.navItem} ${isActive('/add') ? styles.active: ''}`} style={ { textDecoration: 'none' }} onClick={handleClick}>
         <div className={styles.navIcon}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="12" cy="12" r="10" />
@@ -53,7 +61,7 @@ function Navbar() {
 
       {/* Notification tab - hidden from nav bar since it's accessed via the bell icon on Home */}
 
-      <Link to="/me" className={`${styles.navItem} ${isActive('/me') ? styles.active: ''}`} style={ { textDecoration: 'none' }}>
+      <Link to="/me" className={`${styles.navItem} ${isActive('/me') ? styles.active: ''}`} style={ { textDecoration: 'none' }} onClick={handleClick}>
         <div className={styles.navIcon}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />

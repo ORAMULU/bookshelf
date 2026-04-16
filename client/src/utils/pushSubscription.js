@@ -28,7 +28,7 @@ export const subscribeUser = async () => {
 
     // 3. Prepare the Public Key
     // Replace this string with your actual Public Key from your backend .env
-    const publicKey = 'BOCAY9bj2juPSPj_suyJLvyLUBeVCoMFvR2RIDxsrGk75u9R-B9tfMRhs1xvvsMNEEjHQE-VbyWsQYQtAL3kyGg';
+    const publicKey = 'BMJyZCHdIosCsg8aCFn8a5uSz4uBOw8VZNjcxzwySfVjtbs5WEn4dt6vxb1IHjP-yRz4dqcXaQLjTSG5UVquQfk';
     const uint8Key = urlBase64ToUint8Array(publicKey);
 
     // 4. Ask the browser to subscribe
