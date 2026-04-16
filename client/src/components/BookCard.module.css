@@ -1,0 +1,76 @@
+.bookCard {
+  background: linear-gradient(var(--bg-tertiary), #3120157e);
+  backdrop-filter: blur(10px);
+  border: 1px dotted var(--border);
+  border-radius: 20px;
+
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.detail {
+  display: flex;
+  text-align: left;
+  align-items: start;
+  justify-content: start;
+  flex-flow: column nowrap;
+  width: 100%;
+  gap: 3px;
+}
+
+.bookTitle {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.bookAuthor {
+  font-size: .9rem;
+  color: var(--accent);
+}
+
+.bookMeta {
+  font-size: .8rem;
+  color: var(--text-secondary);
+}
+
+.bookStatus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-primary);
+  padding: 5px 5px;
+  border-radius: 5px;
+  font-size: .5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.reading {
+  color: #e8956d;
+}
+.completed {
+  color: #6db86d;
+}
+.wanttoread {
+  color: #6d9be8;
+}

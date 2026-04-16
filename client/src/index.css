@@ -1,0 +1,15 @@
+/* index.css — replace everything with just this */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  ::selection {
+    background: rgba(255, 130, 0, 1);
+    color: rgba(255, 255, 255, 1);
+  }
+  scrollbar-width: none;
+}

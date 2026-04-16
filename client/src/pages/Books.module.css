@@ -1,0 +1,137 @@
+.bookPage {
+  padding-bottom: 100px;
+  /* Space for Navbar */
+  min-height: 100vh;
+  background-image: radial-gradient(circle, #4a3428 1px, transparent 1px);
+  background-attachment: fixed;
+  background-size: 20px 20px;
+  opacity: 1;
+  z-index: -1;
+}
+
+.stickyHeader {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-primary);
+  padding: 20px 16px 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.searchWrapper {
+  display: flex;
+  align-items: center;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0 16px;
+  height: 48px;
+}
+
+.searchIcon {
+  font-size: 1rem;
+  margin-right: 12px;
+  opacity: 0.7;
+}
+
+.searchInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+}
+
+.clearBtn {
+  background: var(--bg-tertiary);
+  /* Matches your dark library theme */
+  border: none;
+  color: var(--text-secondary);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 8px;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  padding: 0;
+  /* Ensures SVG centers correctly */
+}
+
+/* Make the icon pop when you touch it */
+.clearBtn:active {
+  background: var(--accent);
+  color: var(--bg-primary);
+  transform: scale(0.9);
+}
+
+.clearBtn svg {
+  display: block;
+}
+
+
+.filterBar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+  /* Hide scrollbar for clean look */
+}
+
+.filterBar::-webkit-scrollbar {
+  display: none;
+}
+
+.filterBtn {
+  white-space: nowrap;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.filterBtnActive {
+  background: var(--accent);
+  color: var(--bg-primary);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+.resultsInfo {
+  padding: 16px 20px 4px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+}
+
+.bookList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding: 12px 16px;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}

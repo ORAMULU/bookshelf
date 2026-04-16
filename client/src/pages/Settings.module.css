@@ -1,0 +1,122 @@
+.setPage {
+  /* max-width: 600px;
+  margin: 0 auto; */
+  min-height: 100vh;
+  background-image: radial-gradient(circle, #4a3428 1px, transparent 1px);
+  background-attachment: fixed;
+  background-size: 20px 20px;
+  opacity: 1;
+  z-index: -1;
+
+
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: stretch;
+  gap: 120px;
+  padding: 30px 10px 10px;
+  z-index: 100;
+  background: var(--bg-primary);
+}
+.header div {
+  flex: 1;
+}
+
+.headerLabel {
+  font-size: 1.6rem;
+  font-weight: 900;
+  display: flex;
+  justify-content: center;
+}
+
+.pageContent {
+  width: 90%;
+  max-width: 700px;
+  margin: 16px auto;
+}
+
+.pageContentItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--border);
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.pageContentItem h2 {
+  font-size: 1.1rem;
+}
+
+.pageContent p {
+  font-size: .8rem;
+  font-family: Monospace;
+}
+
+.switch {
+  position: relative;
+  height: 32px;
+  width: 57px;
+  display: inline-block;
+}
+
+.switch input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  border-radius: 34px;
+  cursor: pointer;
+  outline: 2px solid var(--bg-primary);
+  transition: .4s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  top: 5px;
+  height: 21px;
+  width: 21px;
+  background: var(--bg-primary);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  transition: .4s;
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(25px);
+}
+.switch input:checked + .slider {
+  outline: none;
+}
+
+
+
+.perforation {
+  position: absolute;
+  bottom: -4px;
+  /* Pull it slightly down so the top of the circles "bites" into the card */
+  left: 0;
+  width: 100%;
+  height: 8px;
+  /* Taller area to ensure circles render */
+  background-image: radial-gradient(
+  circle,
+  var(--bg-tertiary) 3px,
+  transparent 3px
+  );
+  background-size: 14px 14px;
+  background-position: center;
+  z-index: 2;
+}

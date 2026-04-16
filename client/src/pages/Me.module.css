@@ -1,0 +1,228 @@
+.mePage {
+  min-height: 100vh;
+  padding: 24px 20px 100px;
+  min-height: 100vh;
+  background-image: radial-gradient(circle, #4a3428 1px, transparent 1px);
+  background-attachment: fixed;
+  background-size: 20px 20px;
+  opacity: 1;
+  z-index: -1;
+}
+
+.profileSection {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding: 24px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  margin-bottom: 20px;
+  gap: 8px;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.avatar h2 {
+  font-size: 2rem;
+  z-index: 2;
+}
+
+.avatar::before {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 120%;
+  background: linear-gradient(180deg, /*#00b7ff, #ff30ff,*/ var(--accent), var(--accent-soft));
+  animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.avatar::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  background: var(--border);
+  border-radius: 50%;
+}
+
+.profileName {
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.profileBio {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.editBtn {
+  margin-top: 8px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--accent);
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.editBtn:hover {
+  border-color: var(--accent);
+  background: rgba(232, 149, 109, 0.1);
+}
+
+.editForm {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+  width: 100%;
+}
+
+.editInput {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--accent-soft);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.saveBtn {
+  background: var(--accent-soft);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.sectionLabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.statCard {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s;
+}
+
+.statCard:hover {
+  border-color: var(--accent);
+}
+
+.statIcon {
+  font-size: 1.5rem;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.genreCard {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.genreIcon {
+  font-size: 2rem;
+}
+
+.genreText {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.aboutCard {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 8px;
+}
+
+.aboutTitle {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.aboutText {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.aboutVersion {
+  color: var(--border);
+  font-size: 0.75rem;
+  margin-top: 4px;
+}
