@@ -7,6 +7,8 @@ import {
 } from 'vite-plugin-pwa'
 
 export default defineConfig( {
+  base: "/bookshelf-app/",
+};
   plugins: [
     react( {
       babel: {
@@ -31,17 +33,17 @@ export default defineConfig( {
         name: 'BookShelf App',
         short_name: 'BookShelf',
         description: 'Your personal digital bookshelf — browse, read, and manage books even offline',
-        theme_color: '#1f2937',
-        background_color: '#f8fafc',
+        theme_color: '#1a1210',
+        background_color: '#f5e6d3',
         display: 'standalone',
         scope: '/',
         start_url: '/',
         orientation: 'portrait-primary',
         icons: [{
-          src: '/pwa-192x192.png', sizes: '192x192', type: 'image/png'
+          src: '/logo192.png', sizes: '192x192', type: 'image/png'
         },
           {
-            src: '/pwa-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable'
+            src: '/badge-icon.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable'
           }]
       },
 
