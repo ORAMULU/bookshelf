@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+dist/
+build/
+*.local
+
+# Environment variables (protects your VAPID keys)
+.env
+.env.local
+.env.*.local
+
+# Logs and caches
+*.log
+npm-debug.log*
+.vite/
+.eslintcache
+.cache
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

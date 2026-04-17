@@ -1,0 +1,39 @@
+# Dependencies
+node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# Production builds
+dist
+dist-ssr
+*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Vite & React Compiler cache
+.vite
+.eslintcache
+
+# Environment variables (never commit secrets)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor & IDE files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+Thumbs.db
+
+# PWA / Service Worker related (optional - usually safe to ignore cache)
+workbox-*
