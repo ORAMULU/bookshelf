@@ -1,20 +1,28 @@
 import {
-  useState, useEffect
+  useState,
+  useEffect
 } from 'react';
 import {
   useParams,
   Link,
   useNavigate
 } from 'react-router';
+import {
+  useToast
+} from '../ToastContext';
+import Header from '../components/Header';
 import PageTransition from '../components/PageTransition.jsx';
 import styles from './BookDetail.module.css';
 
-const GENRES = ['Programming', 'Narrative', 'Poetry', 'Prophecy', 'Gospel', 'Epistle', 'History', 'Apocalyptic', 'Self Help', 'Spiritual', 'Fiction', 'Non-Fiction', 'Science', 'Philosophy'];
+const GENRES = ['Programming', 'Self Help', 'Spiritual', 'Fiction', 'Non-Fiction', 'Science', 'Philosophy'];
 const STATUSES = ['Reading', 'Completed', 'Want to Read'];
 
 function BookDetail( {
   books, setBooks, updateBook
 }) {
+  const {
+    showToast
+  } = useToast();
   const navigate = useNavigate();
   const {
     id
@@ -45,9 +53,13 @@ function BookDetail( {
 
   function handleSave() {
     if (!editForm.title || !editForm.author) {
-      alert('Title and author are required.');
+      showToast('Title and author are required.', 'error');
       return;
     }
+    if (Number(editForm.currentPage) > Number(editForm.totalPages)) {
+      showToast('Current page cannot exceed total pages', 'error');
+    }
+    return;
     updateBook( {
       ...editForm, rating: Number(editForm.rating)
     });
@@ -57,9 +69,9 @@ function BookDetail( {
   function handleDelete() {
     if (!window.confirm(`Delete "${book.title}"? This cannot be undone.`)) return;
     setBooks(prev => prev.filter(b => b.id !== book.id));
-    navigate('/books');
+    navigate(-1);
   }
-  
+
 
 
   if (!book) {
@@ -76,7 +88,7 @@ function BookDetail( {
   return (
     <PageTransition>
       <div className={styles.bookDetailPage}>
-        <Link to="/books" className={styles.backLink}>← Back</Link>
+        <Header title={book.title} />
 
         {editing ? (
           <div className={styles.bookPageSections}>
@@ -145,63 +157,81 @@ function BookDetail( {
             </div>
           </div>
           <div className={styles.editField}>
-            <label className={styles.editLabel}>Year</label>
-            <select className={styles.editInput} name="year" value={editForm.year} onChange={handleEditChange}>
-              {Array.from({
-                length: 100
-              }, (_, i) => new Date().getFullYear() - i).map(y => (
-                <option key={y} value={y}>{y}</option>
-              ))}
-            </select>
+            <label className={styles.editLabel}>Pages</label>
+            <input className={styles.editInput} name="totalPages" value={editForm.totalPages} onChange={handleEditChange}
+            placeholder="Total pages"
+            />
+        </div>
+        <div className={styles.editField}>
+          <label className={styles.editLabel}>Current page</label>
+          <input className={styles.editInput} name="currentPage" value={editForm.currentPage} onChange={handleEditChange}
+          placeholder="Current Page"
+          />
+      </div>
+    </div>
+    <div className={styles.actionButtons}>
+      <button className={styles.deleteButton} onClick={() => setEditing(false)}>✕ Cancel</button>
+      <button className={styles.editButton} onClick={handleSave}>💾 Save Changes</button>
+    </div>
+  </div>
+): (
+  <div className={styles.bookPageSections}>
+    <div className={styles.sectionOne}>
+      <div className={styles.bookAvatar}>
+        {book?.title?.[0] || "?"}
+      </div>
+
+      <h1 className={styles.detailTitle}>
+        {book.title}
+      </h1>
+
+      <p className={styles.detailAuthor}>
+        {book.author}
+      </p>
+
+      <span className={styles.statusBadge}>
+        {book.status}
+      </span>
+    </div>
+    <div className={styles.sectionTwo}>
+      {[{
+        label: 'Genre', value: book.genre
+      },
+        {
+          label: 'Status', value: book.status
+        },
+        {
+          label: 'Rating', value: '⭐'.repeat(Number(book.rating))
+        },
+        {
+          label: 'Year', value: book.year
+        }, {
+          label: "Pages", value: book.totalPages
+        }, {
+          label: 'Current page', value: book.currentPage
+        },
+      ].map((item) => (
+          <div key={item.label} className={styles.detailPageItem}>
+            <p className={styles.itemLabel}>
+              {item.label}
+            </p>
+            <p className={styles.itemValue}>
+              {item.value}
+            </p>
           </div>
-        </div>
-        <div className={styles.actionButtons}>
-          <button className={styles.deleteButton} onClick={() => setEditing(false)}>✕ Cancel</button>
-          <button className={styles.editButton} onClick={handleSave}>💾 Save Changes</button>
-        </div>
-      </div>
-    ): (
-      <div className={styles.bookPageSections}>
-        <div className={styles.sectionOne}>
-          <p className={styles.bookAvatar}>
-            {book.title[0]}
-          </p>
-          <p className={styles.detailPageTitle}>
-            {book.title}
-          </p>
-          <p className={styles.detailPageAuthor}>
-            {book.author}
-          </p>
-        </div>
-        <div className={styles.sectionTwo}>
-          {[{
-            label: 'Genre', value: book.genre
-          },
-            {
-              label: 'Status', value: book.status
-            },
-            {
-              label: 'Rating', value: '⭐'.repeat(Number(book.rating))
-            },
-            {
-              label: 'Year', value: book.year
-            },
-          ].map((item) => (
-              <div key={item.label} className={styles.detailPageItem}>
-                <p className={styles.itemLabel}>
-                  {item.label}
-                </p>
-                <p className={styles.itemValue}>
-                  {item.value}
-                </p>
-              </div>
-            ))}
-        </div>
-        <div className={styles.actionButtons}>
-          <button className={styles.deleteButton} onClick={handleDelete}>🗑️ Delete</button>
-          <button className={styles.editButton} onClick={startEdit}>✏️ Edit Details</button>
-        </div>
-      </div>
+        ))} < /div> < div className = {
+      styles.actionButtons
+      } >
+      <button className={styles.deleteButton} onClick={handleDelete}>🗑️ Delete</button>
+      <button className={styles.editButton} onClick={startEdit}>✏️ Edit Details</button>
+    </div>
+    {
+    book.fileUrl && (
+      <iframe
+        src={book.fileUrl}
+        className={styles.pdfViewer}
+        />
+    )} < /div>
     )}
   </div>
 </PageTransition>

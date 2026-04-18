@@ -1,4 +1,5 @@
 import PageTransition from '../components/PageTransition';
+import Header from '../components/Header';
 import styles from './Notifications.module.css';
 
 
@@ -32,6 +33,7 @@ function Notifications () {
   return (
     <PageTransition>
       <div className={styles.notifPage}>
+        <Header title="Notifications" />
         <header className={styles.header}>
           <h1 className={styles.title}>Activity Log</h1>
           <button className={styles.clearAll}>Mark all read</button>

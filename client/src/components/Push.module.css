@@ -1,0 +1,85 @@
+.switch {
+  position: relative;
+  height: 32px;
+  width: 57px;
+  display: inline-block;
+}
+
+.switch input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  border-radius: 34px;
+  cursor: pointer;
+  outline: 2px solid var(--bg-primary);
+  transition: .4s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  top: 5px;
+  height: 21px;
+  width: 21px;
+  background: var(--bg-primary);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  transition: .4s;
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(25px);
+}
+.switch input:checked + .slider {
+  outline: none;
+}
+
+.switch.loading .slider {
+  opacity: 0.4;
+}
+
+.switch.loading .slider::before {
+  opacity: 0;
+}
+
+.switch.loading::after {
+  content: "";
+  position: absolute;
+
+  width: 18px;
+  height: 18px;
+
+  top: 50%;
+  left: 5px;
+
+  transform: translate(0, -50%);
+
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top: 2px solid #fff;
+  box-shadow: 0 0 4px rgba(255,255,255,0.6);
+  border-right: 2px solid white;
+
+  animation: spin 0.7s linear infinite;
+}
+
+.switch.loading[data-checked="true"]::after {
+  transform: translate(25px, -50%);
+}
+
+@keyframes spin {
+  from {
+    transform: translate(0, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(0, -50%) rotate(360deg);
+  }
+}

@@ -1,0 +1,32 @@
+.header {
+  position: sticky;
+  top: 0;
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+  padding: 20px 12px;
+  background: var(--bg-primary);
+  z-index: 100;
+}
+
+/* left + right buttons */
+.iconBtn,
+.rightSlot {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* title */
+.headerLabel {
+  font-size: clamp(16px, 4vw, 20px);
+  font-weight: 900;
+
+  text-align: center;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

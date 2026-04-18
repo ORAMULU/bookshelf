@@ -5,7 +5,7 @@ function ToastBar ( {
   msg, show, type
 }) {
 
-  const icon = type === 'success' ? '✅': type === 'error' ? '❌': '⚠️';
+  const icon = type === 'success' ? '✅': type === 'error' ? '❌': type === 'warn' ? '⚠️': null;
 
 
   return (
@@ -15,10 +15,7 @@ function ToastBar ( {
           {icon}
         </div>
         <div className={styles.toastContent}>
-          <h3></h3>
-          <p>
             {msg}
-          </p>
         </div>
       </div>
     </div>

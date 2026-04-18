@@ -3,8 +3,8 @@ import {
   useEffect
 } from 'react';
 import {
-  BrowserRouter
-} from 'react-router';
+  HashRouter
+} from "react-router-dom";
 import {
   soundManager
 } from "./utils/soundManager";
@@ -108,13 +108,13 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ScrollToTop />
       <ToastProvider>
         <AppRoutes books={books} setBooks={setBooks} addBook={addBook} updateBook={updateBook} />
         <InstallPrompt />
       </ToastProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
